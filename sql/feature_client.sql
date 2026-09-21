@@ -1,7 +1,8 @@
 SELECT 
-	ApplicationId,
+	cdc.ApplicationId AS ApplicationId,
+    cdc.ApplicationDate AS ApplicationDate,
 	MainDebt,LoanSerialNumber,
-	IsRegistrationAddressCoincides,dpd.MaxOverdueDays90 ,
+	{target_column}
     PositionType,
     EducationType,
     OccupationType,
@@ -23,7 +24,5 @@ SELECT
         when IsTablet = 1 then 'Планшет'
         when IsMobile = 1 then 'Смартфон' end as gadget
 FROM risk_ch_db.client_data_495credit cdc 
-LEFT JOIN risk_ch_db.dpd_495credit dpd on cdc.ApplicationId = dpd.ApplicationId
- where cdc.ApplicationStatus in ('LoanIssued', 'LoanReturned')
-  and ApplicationDate >= '{start_date}'
-  and ApplicationDate < '{end_date}'
+{target_join}
+WHERE {filters}

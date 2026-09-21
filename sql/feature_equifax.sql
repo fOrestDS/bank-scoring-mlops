@@ -1,4 +1,4 @@
-SELECT ec.ApplicationId ,
+SELECT ec.ApplicationId AS "ec.ApplicationId",
     count(cred_sum) filter (where cred_full_cost>200 and cred_active not in (0,2,5)) as active_count,
     sum(cred_sum) filter (where cred_full_cost>200 and cred_active not in (0,2,5)) as active_debt,
     count(cred_sum) filter (where cred_full_cost>200 and (cred_date + interval 30 DAY) >= ApplicationDate) as open_count_30d,
@@ -39,6 +39,5 @@ LEFT JOIN  (
     WHERE  cred_active in (1,10,11,12,13,14,15,16,17,18,19)
     GROUP BY ApplicationId
 ) mo on mo.ApplicationId = ec.ApplicationId
-WHERE ApplicationDate >= '{start_date}'
-  AND ApplicationDate < '{end_date}'  
+WHERE {filters}
 GROUP BY ec.ApplicationId

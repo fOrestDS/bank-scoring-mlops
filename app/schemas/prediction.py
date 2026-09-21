@@ -1,3 +1,5 @@
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -6,6 +8,6 @@ class PredictRequest(BaseModel):
 
 
 class PredictResponse(BaseModel):
-    application_id: int
+    application_id: int | None = None
     default_probability: float
     risk_level: str

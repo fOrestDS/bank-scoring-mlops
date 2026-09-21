@@ -24,7 +24,7 @@ def preprocess_dataset(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
     df = df.drop(
-        columns=["ApplicationId", "ec.ApplicationId", "BirthDate"],
+        columns=["ApplicationId", "ec.ApplicationId", "BirthDate", "ApplicationDate"],
         errors="ignore",
     )
 
