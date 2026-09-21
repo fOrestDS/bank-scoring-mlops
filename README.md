@@ -22,13 +22,6 @@ Bank credit scoring system with ClickHouse, FastAPI, CatBoost, Docker and reprod
 - `sql/` — SQL feature extracts
 - `tests/` — smoke tests
 
-## Main commands
-
-Run the baseline model:
-```powershell
-python -m scripts.run_train_parquet
-```
-
 ## CatBoost probability calibration
 
 ### MLflow storage
